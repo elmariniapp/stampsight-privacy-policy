@@ -8,28 +8,26 @@
   <style>
     :root{
       --bg:#f5f5f7;
-      --card:rgba(255,255,255,0.78);
+      --card:rgba(255,255,255,0.82);
       --text:#1d1d1f;
       --muted:#6e6e73;
       --line:rgba(0,0,0,0.08);
       --accent:#0071e3;
-      --shadow:0 20px 60px rgba(0,0,0,0.08);
-      --radius:28px;
+      --shadow:0 24px 70px rgba(0,0,0,0.09);
+      --radius:30px;
     }
 
     *{box-sizing:border-box}
 
-    html{
-      scroll-behavior:smooth;
-    }
+    html{scroll-behavior:smooth}
 
     body{
       margin:0;
       font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at top left, rgba(0,113,227,0.08), transparent 30%),
-        radial-gradient(circle at top right, rgba(0,0,0,0.05), transparent 28%),
+        radial-gradient(circle at top left, rgba(0,113,227,0.10), transparent 30%),
+        radial-gradient(circle at top right, rgba(52,199,89,0.07), transparent 28%),
         linear-gradient(180deg, #fbfbfd 0%, #f5f5f7 100%);
       min-height:100vh;
       line-height:1.7;
@@ -40,11 +38,65 @@
     .wrap{
       width:min(980px, calc(100% - 32px));
       margin:0 auto;
-      padding:40px 0 80px;
+      padding:34px 0 80px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:34px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      letter-spacing:-0.02em;
+    }
+
+    .brand-mark{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      background:linear-gradient(135deg, #0071e3, #67b7ff);
+      box-shadow:0 12px 28px rgba(0,113,227,0.25);
+    }
+
+    .lang-switch{
+      display:flex;
+      gap:8px;
+      padding:6px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.72);
+      border:1px solid rgba(255,255,255,0.75);
+      box-shadow:0 10px 28px rgba(0,0,0,0.06);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+    }
+
+    .lang-switch button{
+      border:0;
+      cursor:pointer;
+      padding:9px 14px;
+      border-radius:999px;
+      background:transparent;
+      color:var(--muted);
+      font-weight:700;
+      font-size:14px;
+      transition:all .2s ease;
+    }
+
+    .lang-switch button.active{
+      background:#1d1d1f;
+      color:#fff;
+      box-shadow:0 8px 18px rgba(0,0,0,0.16);
     }
 
     .hero{
-      padding:24px 0 28px;
+      padding:14px 0 28px;
     }
 
     .badge{
@@ -58,23 +110,23 @@
       box-shadow:0 8px 24px rgba(0,0,0,0.05);
       color:var(--muted);
       font-size:13px;
-      font-weight:600;
+      font-weight:700;
       backdrop-filter:blur(14px);
       -webkit-backdrop-filter:blur(14px);
     }
 
     .hero h1{
       margin:18px 0 12px;
-      font-size:clamp(2.4rem, 6vw, 4.3rem);
-      line-height:1.04;
-      letter-spacing:-0.04em;
-      font-weight:700;
+      font-size:clamp(2.45rem, 6vw, 4.4rem);
+      line-height:1.03;
+      letter-spacing:-0.055em;
+      font-weight:780;
     }
 
     .hero p{
       margin:0;
-      max-width:720px;
-      font-size:1.08rem;
+      max-width:760px;
+      font-size:1.1rem;
       color:var(--muted);
     }
 
@@ -87,7 +139,7 @@
 
     .meta-chip{
       padding:10px 14px;
-      border-radius:14px;
+      border-radius:15px;
       background:rgba(255,255,255,0.72);
       border:1px solid rgba(255,255,255,0.7);
       box-shadow:0 8px 24px rgba(0,0,0,0.04);
@@ -99,21 +151,21 @@
 
     .panel{
       background:var(--card);
-      border:1px solid rgba(255,255,255,0.65);
+      border:1px solid rgba(255,255,255,0.68);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
+      backdrop-filter:blur(22px);
+      -webkit-backdrop-filter:blur(22px);
       overflow:hidden;
     }
 
     .summary{
       margin-top:26px;
-      padding:24px 24px;
+      padding:24px;
       font-size:1rem;
       color:#2c2c2e;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.68));
+        linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.70));
       border:1px solid rgba(255,255,255,0.75);
     }
 
@@ -133,15 +185,13 @@
       border-bottom:1px solid var(--line);
     }
 
-    .section:last-child{
-      border-bottom:none;
-    }
+    .section:last-child{border-bottom:none}
 
     .section h2{
       margin:0 0 10px;
       font-size:1.35rem;
-      line-height:1.2;
-      letter-spacing:-0.02em;
+      line-height:1.22;
+      letter-spacing:-0.025em;
     }
 
     .section p{
@@ -171,9 +221,7 @@
       text-decoration:none;
     }
 
-    a:hover{
-      text-decoration:underline;
-    }
+    a:hover{text-decoration:underline}
 
     .footer{
       margin-top:30px;
@@ -182,14 +230,27 @@
       font-size:14px;
     }
 
+    .lang-content{display:none}
+    .lang-content.active{display:block}
+
     @media (max-width: 640px){
       .wrap{
         width:min(100%, calc(100% - 20px));
-        padding-top:22px;
+        padding-top:20px;
       }
 
-      .hero{
-        padding-top:8px;
+      .topbar{
+        align-items:flex-start;
+        flex-direction:column;
+        margin-bottom:22px;
+      }
+
+      .lang-switch{
+        width:100%;
+      }
+
+      .lang-switch button{
+        flex:1;
       }
 
       .summary,
@@ -203,109 +264,183 @@
 </head>
 <body>
   <main class="wrap">
-    <section class="hero">
-      <div class="badge">StampSight • Privacy Policy</div>
-      <h1>Your privacy,<br>kept simple.</h1>
-      <p>
-        StampSight is designed to respect user privacy. The app does not require an account
-        and does not sell personal data.
-      </p>
-      <div class="meta">
-        <div class="meta-chip">Published by EL MARINI APP</div>
-        <div class="meta-chip">Last updated: May 2026</div>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <span>StampSight</span>
       </div>
+
+      <div class="lang-switch" aria-label="Language switch">
+        <button id="btn-en" class="active" type="button" onclick="setLanguage('en')">🇬🇧 English</button>
+        <button id="btn-fr" type="button" onclick="setLanguage('fr')">🇫🇷 Français</button>
+      </div>
+    </header>
+
+    <section id="content-en" class="lang-content active">
+      <section class="hero">
+        <div class="badge">StampSight • Privacy Policy</div>
+        <h1>Your privacy,<br>kept simple.</h1>
+        <p>
+          StampSight is designed to respect user privacy. The app does not require an account
+          and does not sell personal data.
+        </p>
+        <div class="meta">
+          <div class="meta-chip">Published by EL MARINI APP</div>
+          <div class="meta-chip">Last updated: May 2026</div>
+        </div>
+      </section>
+
+      <section class="panel summary">
+        <strong>Summary</strong>
+        StampSight helps users manage their content while keeping the experience simple and privacy-friendly.
+        Most user content is intended to remain stored locally on the device unless the user explicitly chooses
+        to export or share it.
+      </section>
+
+      <section class="panel content">
+        <div class="section">
+          <h2>1. Information We Collect</h2>
+          <p>StampSight does not collect personal data directly from users. The app does not require account creation, login, or registration.</p>
+        </div>
+        <div class="section">
+          <h2>2. Local Data</h2>
+          <p>Files, images, reports, or documents created or imported by the user are intended to remain stored locally on the user's device unless the user chooses to export or share them using external services.</p>
+        </div>
+        <div class="section">
+          <h2>3. Camera, Photos, and Files</h2>
+          <p>StampSight may request access to the camera, photo library, or files only to provide its core features. These permissions are used only when required by the user’s actions inside the app.</p>
+        </div>
+        <div class="section">
+          <h2>4. Sharing and Export</h2>
+          <p>If the user chooses to share or export content, the selected external app or service may process the shared data according to its own privacy policy.</p>
+        </div>
+        <div class="section">
+          <h2>5. Analytics and Advertising</h2>
+          <p>StampSight does not use third-party advertising SDKs. If analytics or diagnostics are added in the future, this policy will be updated accordingly.</p>
+        </div>
+        <div class="section">
+          <h2>6. Data Retention</h2>
+          <p>Since user content is stored locally, deleting the app or deleting files from the device may remove the related local data, depending on the operating system behavior.</p>
+        </div>
+        <div class="section">
+          <h2>7. Children’s Privacy</h2>
+          <p>StampSight is not intended to knowingly collect personal information from children.</p>
+        </div>
+        <div class="section">
+          <h2>8. Changes to This Policy</h2>
+          <p>This Privacy Policy may be updated from time to time. Any changes will be published on this page.</p>
+        </div>
+        <div class="section">
+          <h2>9. Contact</h2>
+          <p>For privacy or support requests, contact us at <a href="mailto:support@elmariniapp.com">support@elmariniapp.com</a>.</p>
+        </div>
+      </section>
+
+      <section class="panel contact-card">
+        <h3>Need help?</h3>
+        <p>For legal, support, or privacy-related questions, you can contact us directly at <a href="mailto:support@elmariniapp.com">support@elmariniapp.com</a>.</p>
+      </section>
     </section>
 
-    <section class="panel summary">
-      <strong>Summary</strong>
-      StampSight helps users manage their content while keeping the experience simple and privacy-friendly.
-      Most user content is intended to remain stored locally on the device unless the user explicitly chooses
-      to export or share it.
-    </section>
-
-    <section class="panel content">
-      <div class="section">
-        <h2>1. Information We Collect</h2>
+    <section id="content-fr" class="lang-content">
+      <section class="hero">
+        <div class="badge">StampSight • Politique de confidentialité</div>
+        <h1>Votre vie privée,<br>simplement protégée.</h1>
         <p>
-          StampSight does not collect personal data directly from users. The app does not require account
-          creation, login, or registration.
+          StampSight est conçu pour respecter la confidentialité des utilisateurs. L’application ne nécessite
+          pas de compte et ne vend pas de données personnelles.
         </p>
-      </div>
+        <div class="meta">
+          <div class="meta-chip">Publié par EL MARINI APP</div>
+          <div class="meta-chip">Dernière mise à jour : mai 2026</div>
+        </div>
+      </section>
 
-      <div class="section">
-        <h2>2. Local Data</h2>
-        <p>
-          Files, images, reports, or documents created or imported by the user are intended to remain stored
-          locally on the user's device unless the user chooses to export or share them using external services.
-        </p>
-      </div>
+      <section class="panel summary">
+        <strong>Résumé</strong>
+        StampSight aide les utilisateurs à gérer leur contenu tout en conservant une expérience simple et respectueuse
+        de la vie privée. La plupart des contenus utilisateur sont destinés à rester stockés localement sur l’appareil,
+        sauf si l’utilisateur choisit explicitement de les exporter ou de les partager.
+      </section>
 
-      <div class="section">
-        <h2>3. Camera, Photos, and Files</h2>
-        <p>
-          StampSight may request access to the camera, photo library, or files only to provide its core features.
-          These permissions are used only when required by the user’s actions inside the app.
-        </p>
-      </div>
+      <section class="panel content">
+        <div class="section">
+          <h2>1. Informations collectées</h2>
+          <p>StampSight ne collecte pas directement de données personnelles auprès des utilisateurs. L’application ne nécessite pas de création de compte, de connexion ou d’inscription.</p>
+        </div>
+        <div class="section">
+          <h2>2. Données locales</h2>
+          <p>Les fichiers, images, rapports ou documents créés ou importés par l’utilisateur sont destinés à rester stockés localement sur son appareil, sauf si l’utilisateur choisit de les exporter ou de les partager via des services externes.</p>
+        </div>
+        <div class="section">
+          <h2>3. Appareil photo, photos et fichiers</h2>
+          <p>StampSight peut demander l’accès à l’appareil photo, à la photothèque ou aux fichiers uniquement pour fournir ses fonctionnalités principales. Ces autorisations sont utilisées seulement lorsque l’action de l’utilisateur l’exige dans l’application.</p>
+        </div>
+        <div class="section">
+          <h2>4. Partage et export</h2>
+          <p>Si l’utilisateur choisit de partager ou d’exporter du contenu, l’application ou le service externe sélectionné peut traiter les données partagées selon sa propre politique de confidentialité.</p>
+        </div>
+        <div class="section">
+          <h2>5. Analyse et publicité</h2>
+          <p>StampSight n’utilise pas de SDK publicitaire tiers. Si des outils d’analyse ou de diagnostic sont ajoutés à l’avenir, cette politique sera mise à jour en conséquence.</p>
+        </div>
+        <div class="section">
+          <h2>6. Conservation des données</h2>
+          <p>Les contenus étant stockés localement, la suppression de l’application ou des fichiers depuis l’appareil peut supprimer les données locales associées, selon le comportement du système d’exploitation.</p>
+        </div>
+        <div class="section">
+          <h2>7. Confidentialité des enfants</h2>
+          <p>StampSight n’a pas vocation à collecter sciemment des informations personnelles concernant des enfants.</p>
+        </div>
+        <div class="section">
+          <h2>8. Modifications de cette politique</h2>
+          <p>Cette politique de confidentialité peut être mise à jour de temps à autre. Toute modification sera publiée sur cette page.</p>
+        </div>
+        <div class="section">
+          <h2>9. Contact</h2>
+          <p>Pour toute demande liée à la confidentialité ou au support, contactez-nous à <a href="mailto:support@elmariniapp.com">support@elmariniapp.com</a>.</p>
+        </div>
+      </section>
 
-      <div class="section">
-        <h2>4. Sharing and Export</h2>
-        <p>
-          If the user chooses to share or export content, the selected external app or service may process the
-          shared data according to its own privacy policy.
-        </p>
-      </div>
-
-      <div class="section">
-        <h2>5. Analytics and Advertising</h2>
-        <p>
-          StampSight does not use third-party advertising SDKs. If analytics or diagnostics are added in the future,
-          this policy will be updated accordingly.
-        </p>
-      </div>
-
-      <div class="section">
-        <h2>6. Data Retention</h2>
-        <p>
-          Since user content is stored locally, deleting the app or deleting files from the device may remove
-          the related local data, depending on the operating system behavior.
-        </p>
-      </div>
-
-      <div class="section">
-        <h2>7. Children’s Privacy</h2>
-        <p>
-          StampSight is not intended to knowingly collect personal information from children.
-        </p>
-      </div>
-
-      <div class="section">
-        <h2>8. Changes to This Policy</h2>
-        <p>
-          This Privacy Policy may be updated from time to time. Any changes will be published on this page.
-        </p>
-      </div>
-
-      <div class="section">
-        <h2>9. Contact</h2>
-        <p>
-          For privacy or support requests, contact us at
-          <a href="mailto:support@elmariniapp.com">support@elmariniapp.com</a>.
-        </p>
-      </div>
-    </section>
-
-    <section class="panel contact-card">
-      <h3>Need help?</h3>
-      <p>
-        For legal, support, or privacy-related questions, you can contact us directly at
-        <a href="mailto:support@elmariniapp.com">support@elmariniapp.com</a>.
-      </p>
+      <section class="panel contact-card">
+        <h3>Besoin d’aide ?</h3>
+        <p>Pour toute question légale, de support ou liée à la confidentialité, vous pouvez nous contacter directement à <a href="mailto:support@elmariniapp.com">support@elmariniapp.com</a>.</p>
+      </section>
     </section>
 
     <div class="footer">
       © 2026 EL MARINI APP — StampSight
     </div>
   </main>
+
+  <script>
+    function setLanguage(lang) {
+      const isFr = lang === 'fr';
+
+      document.getElementById('content-en').classList.toggle('active', !isFr);
+      document.getElementById('content-fr').classList.toggle('active', isFr);
+
+      document.getElementById('btn-en').classList.toggle('active', !isFr);
+      document.getElementById('btn-fr').classList.toggle('active', isFr);
+
+      document.documentElement.lang = isFr ? 'fr' : 'en';
+
+      try {
+        localStorage.setItem('stampsight_privacy_lang', lang);
+      } catch (e) {}
+    }
+
+    (function initLanguage() {
+      let saved = null;
+      try {
+        saved = localStorage.getItem('stampsight_privacy_lang');
+      } catch (e) {}
+
+      const browserLang = navigator.language || navigator.userLanguage || 'en';
+      const initialLang = saved || (browserLang.toLowerCase().startsWith('fr') ? 'fr' : 'en');
+
+      setLanguage(initialLang);
+    })();
+  </script>
 </body>
 </html>
